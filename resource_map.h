@@ -8,7 +8,7 @@
 *
 *
 *******************************************************************************
-* Copyright 2019-2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2019-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -69,31 +69,13 @@
     #define sI2C_SCL                    (CYBSP_I2C_SCL)
     #define sI2C_SDA                    (CYBSP_I2C_SDA)
 
-    #if defined (TARGET_CY8CPROTO_062S3_4343W)
-        #define mI2C_SCL                (P5_0)
-        #define mI2C_SDA                (P5_1)
-    #elif defined (TARGET_CYW9P62S1_43012EVB_01)
-        #define mI2C_SCL                (P0_2)
-        #define mI2C_SDA                (P0_3)
-    #elif defined (TARGET_CY8CKIT_062S4)
-        #define mI2C_SCL                (P10_0)
-        #define mI2C_SDA                (P10_1)
-    #elif defined (TARGET_CY8CKIT_062S2_43012)   || \
-          defined (TARGET_CYW9P62S1_43438EVB_01) || \
-          defined (TARGET_CY8CKIT_062_BLE)       || \
-          defined (TARGET_CY8CKIT_062_WIFI_BT)   || \
-          defined (TARGET_CY8CPROTO_063_BLE)     || \
-          defined (TARGET_CY8CPROTO_062_4343W)   || \
-          defined (TARGET_CY8CKIT_064B0S2_4343W) || \
-          defined (TARGET_CYSBSYSKIT_01)         || \
-          defined (TARGET_CYSBSYSKIT_DEV_01)     || \
-          defined (TARGET_CY8CEVAL_062S2)        || \
-          defined (TARGET_CY8CEVAL_062S2_LAI_4373M2)
-        #define mI2C_SCL                (P9_0)
-        #define mI2C_SDA                (P9_1)
-    #else
-        #error Unsupported kit. Define pins for I2C master or use in Master/Slave mode only.
-    #endif
+    /* Note: when set I2C_MODE_BOTH mode, please see the Readme file for detail for the pin assignment of mI2C_SCL/mI2C_SDA.
+     * After adding mI2C_SCL/mI2C_SDA define,please delete the error message reminder.
+     * For example for CY8CPROTO-062-4343W kit:
+     * #define mI2C_SCL                (P9_0)
+     * #define mI2C_SDA                (P9_1)
+     */
+    #error Please see Hardware setup in Readme file for the pin assignment of mI2C_SCL/mI2C_SDA, and add mI2C_SCL/mI2C_SDA define and configure them here.
 #endif
 
 #endif /* RESOURCE_MAP_H_ */
