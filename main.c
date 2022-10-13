@@ -9,7 +9,7 @@
 *
 *
 *******************************************************************************
-* Copyright 2019-2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2019-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -41,7 +41,6 @@
 * so agrees to indemnify Cypress against all liability.
 *******************************************************************************/
 
-#include "cy_pdl.h"
 #include "cyhal.h"
 #include "cybsp.h"
 #include "cy_retarget_io.h"
@@ -82,8 +81,8 @@
 ****************************************/
 #if ((I2C_MODE == I2C_MODE_BOTH) || (I2C_MODE == I2C_MODE_SLAVE))
 cyhal_i2c_t sI2C;
-uint8_t i2c_slave_read_buffer[PACKET_SIZE];
-uint8_t i2c_slave_write_buffer[PACKET_SIZE] = {PACKET_SOP, STS_CMD_FAIL, PACKET_EOP};
+uint8_t i2c_write_buffer[PACKET_SIZE];
+uint8_t i2c_read_buffer[PACKET_SIZE] = {PACKET_SOP, STS_CMD_FAIL, PACKET_EOP};
 #endif
 
 /*******************************************************************************
@@ -130,28 +129,27 @@ void handle_slave_event(void *callback_arg, cyhal_i2c_event_t event)
         if (0UL != (CYHAL_I2C_SLAVE_WR_CMPLT_EVENT & event))
         {   
             /* Check start and end of packet markers. */
-            if ((i2c_slave_read_buffer[PACKET_SOP_POS] == PACKET_SOP) &&
-                (i2c_slave_read_buffer[PACKET_EOP_POS] == PACKET_EOP))
+            if ((i2c_write_buffer[PACKET_SOP_POS] == PACKET_SOP) &&
+                (i2c_write_buffer[PACKET_EOP_POS] == PACKET_EOP))
                 {
                     /* Execute command */
-                    cyhal_gpio_write( CYBSP_USER_LED, 
-                    i2c_slave_read_buffer[PACKET_CMD_POS]);
+                    cyhal_gpio_write( CYBSP_USER_LED, i2c_write_buffer[PACKET_CMD_POS]);
                     
                     /* Update status of received command. */
-                    i2c_slave_write_buffer[PACKET_STS_POS] = STS_CMD_DONE;
+                    i2c_read_buffer[PACKET_STS_POS] = STS_CMD_DONE;
                 }
             
             /* Configure read buffer for the next write */
-            i2c_slave_read_buffer[PACKET_SOP_POS] = 0;
-            i2c_slave_read_buffer[PACKET_EOP_POS] = 0;
-            cyhal_i2c_slave_config_read_buff(&sI2C, i2c_slave_read_buffer, PACKET_SIZE);
+            i2c_write_buffer[PACKET_SOP_POS] = 0;
+            i2c_write_buffer[PACKET_EOP_POS] = 0;
+            cyhal_i2c_slave_config_write_buffer(&sI2C, i2c_write_buffer, PACKET_SIZE);
         }
             
         if (0UL != (CYHAL_I2C_SLAVE_RD_CMPLT_EVENT & event))
         {
             /* Configure write buffer for the next read */
-            i2c_slave_write_buffer[PACKET_STS_POS] = STS_CMD_FAIL;
-            cyhal_i2c_slave_config_write_buff(&sI2C, i2c_slave_write_buffer, PACKET_SIZE);
+            i2c_read_buffer[PACKET_STS_POS] = STS_CMD_FAIL;
+            cyhal_i2c_slave_config_read_buffer(&sI2C, i2c_read_buffer, PACKET_SIZE);
         }
     }
 }
@@ -161,7 +159,7 @@ void handle_slave_event(void *callback_arg, cyhal_i2c_event_t event)
 * Function Name: main
 ********************************************************************************
 * Summary:
-* This is the main function for CM4 CPU.
+* This is the main function.
 *   1. I2C Master sends command packet to the slave
 *   2. I2C Master reads the response packet to generate the next command
 *
@@ -192,7 +190,7 @@ int main(void)
     printf("\x1b[2J\x1b[;H");
 
     printf("**************************\r\n");
-    printf("PSoC 6 MCU I2C Master\r\n");
+    printf("HAL: I2C Master\r\n");
     printf("**************************\r\n\n");
 
 #if ((I2C_MODE == I2C_MODE_BOTH) || (I2C_MODE == I2C_MODE_SLAVE))
@@ -225,11 +223,11 @@ int main(void)
     }
     printf("Done\r\n");
 
-    cyhal_i2c_slave_config_write_buff( &sI2C, i2c_slave_write_buffer, PACKET_SIZE);
-    cyhal_i2c_slave_config_read_buff( &sI2C, i2c_slave_read_buffer, PACKET_SIZE);
+    cyhal_i2c_slave_config_read_buffer( &sI2C, i2c_read_buffer, PACKET_SIZE);
+    cyhal_i2c_slave_config_write_buffer( &sI2C, i2c_write_buffer, PACKET_SIZE);
     cyhal_i2c_register_callback( &sI2C, handle_slave_event, NULL);
     cyhal_i2c_enable_event( &sI2C,
-                            (CYHAL_I2C_SLAVE_WR_CMPLT_EVENT 
+        (cyhal_i2c_event_t)(CYHAL_I2C_SLAVE_WR_CMPLT_EVENT 
                            | CYHAL_I2C_SLAVE_RD_CMPLT_EVENT 
                            | CYHAL_I2C_SLAVE_ERR_EVENT),    
                            I2C_SLAVE_IRQ_PRIORITY, true);

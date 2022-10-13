@@ -1,42 +1,43 @@
-# PSoC&trade; 6 MCU: I2C master
+# HAL: I2C master
 
-This code example demonstrates the use of the I2C (HAL) resource for PSoC&trade; 6 MCU in master mode. The I2C master is configured to send command packets to control a user LED on the slave. Both the slave and master can be configured on a single kit.
+This code example demonstrates the use of the I2C (HAL) resource in master mode. The I2C master is configured to send command packets to control a user LED on the slave. Both the slave and master can be configured on a single kit.
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-psoc6-i2c-master)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMjA4MTgiLCJTcGVjIE51bWJlciI6IjAwMi0yMDgxOCIsIkRvYyBUaXRsZSI6IlBTb0MmdHJhZGU7IDYgTUNVOiBJMkMgbWFzdGVyIiwicmlkIjoieWVrdCIsIkRvYyB2ZXJzaW9uIjoiMi4zLjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiSUNXIiwiRG9jIEZhbWlseSI6IlBTT0MifQ==)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMjA4MTgiLCJTcGVjIE51bWJlciI6IjAwMi0yMDgxOCIsIkRvYyBUaXRsZSI6IkhBTDogSTJDIG1hc3RlciIsInJpZCI6Inlla3QiLCJEb2MgdmVyc2lvbiI6IjMuMC4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IklDVyIsIkRvYyBGYW1pbHkiOiJQU09DIn0=)
 
 
 ## Requirements
 
-- [ModusToolbox&trade; software](https://www.cypress.com/products/modustoolbox-software-environment) v2.2 or later (tested with v2.3)
-- Board support package (BSP) minimum required version: 2.0.0
+- [ModusToolbox&trade; software](https://www.infineon.com/modustoolbox) v3.0 or later (tested with v3.0)
+- PSoC&trade; 6 Board support package (BSP) minimum required version: 4.0.0
 - Programming language: C
-- Associated parts: All [PSoC&trade; 6 MCU](https://www.cypress.com/PSoC6) parts
+- Associated parts: All [PSoC&trade; 6 MCU](https://www.cypress.com/PSoC6) parts, [XMC7000 MCU](https://www.infineon.com/cms/en/product/microcontroller/32-bit-industrial-microcontroller-based-on-arm-cortex-m/)
 
 
 ## Supported toolchains (make variable 'TOOLCHAIN')
 
-- GNU Arm® embedded compiler v9.3.1 (`GCC_ARM`) - Default value of `TOOLCHAIN`
-- Arm&reg; compiler v6.13 (`ARM`)
-- IAR C/C++ compiler v8.42.2 (`IAR`)
+- GNU Arm&reg; embedded compiler v10.3.1 (`GCC_ARM`) - Default value of `TOOLCHAIN`
+- Arm&reg; compiler v6.16 (`ARM`)
+- IAR C/C++ compiler v9.30.1 (`IAR`)
 
 
 ## Supported kits (make variable 'TARGET')
 
-- [PSoC&trade; 6 Wi-Fi Bluetooth® prototyping kit](https://www.cypress.com/CY8CPROTO-062-4343W) (`CY8CPROTO-062-4343W`) – Default value of `TARGET`
-- [PSoC&trade; 6 Wi-Fi Bluetooth&reg; pioneer kit](https://www.cypress.com/CY8CKIT-062-WiFi-BT) (`CY8CKIT-062-WIFI-BT`)
-- [PSoC&trade; 6 Bluetooth&reg; LE pioneer kit](https://www.cypress.com/CY8CKIT-062-BLE) (`CY8CKIT-062-BLE`)
-- [PSoC&trade; 6 Bluetooth&reg; LE prototyping kit](https://www.cypress.com/CY8CPROTO-063-BLE) (`CY8CPROTO-063-BLE`)
-- [PSoC&trade; 62S2 Wi-Fi Bluetooth&reg; pioneer kit](https://www.cypress.com/CY8CKIT-062S2-43012) (`CY8CKIT-062S2-43012`)
-- [PSoC&trade; 62S1 Wi-Fi Bluetooth&reg; pioneer kit](https://www.cypress.com/CYW9P62S1-43438EVB-01) (`CYW9P62S1-43438EVB-01`)
-- [PSoC&trade; 62S1 Wi-Fi Bluetooth&reg; pioneer kit](https://www.cypress.com/CYW9P62S1-43012EVB-01) (`CYW9P62S1-43012EVB-01`)
-- [PSoC&trade; 62S3 Wi-Fi Bluetooth&reg; prototyping kit](https://www.cypress.com/CY8CPROTO-062S3-4343W) (`CY8CPROTO-062S3-4343W`)
-- [PSoC&trade; 64 "Secure Boot" Wi-Fi Bluetooth&reg; pioneer kit](https://www.cypress.com/CY8CKIT-064B0S2-4343W) (`CY8CKIT-064B0S2-4343W`)
-- [PSoC&trade; 62S4 pioneer kit](https://www.cypress.com/CY8CKIT-062S4) (`CY8CKIT-062S4`)
-- [PSoC&trade; 62S2 evaluation kit](https://www.cypress.com/CY8CEVAL-062S2) (`CY8CEVAL-062S2`, `CY8CEVAL-062S2-LAI-4373M2`)
+- [PSoC&trade; 6 Wi-Fi Bluetooth&reg; prototyping kit](https://www.infineon.com/CY8CPROTO-062-4343W) (`CY8CPROTO-062-4343W`) – Default value of `TARGET`
+- [PSoC&trade; 6 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CY8CKIT-062-WIFI-BT) (`CY8CKIT-062-WIFI-BT`)
+- [PSoC&trade; 6 Bluetooth&reg; LE pioneer kit](https://www.infineon.com/CY8CKIT-062-BLE) (`CY8CKIT-062-BLE`)
+- [PSoC&trade; 6 Bluetooth&reg; LE prototyping kit](https://www.infineon.com/CY8CPROTO-063-BLE) (`CY8CPROTO-063-BLE`)
+- [PSoC&trade; 62S2 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CY8CKIT-062S2-43012) (`CY8CKIT-062S2-43012`)
+- [PSoC&trade; 62S1 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CYW9P62S1-43438EVB-01) (`CYW9P62S1-43438EVB-01`)
+- [PSoC&trade; 62S1 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CYW9P62S1-43012EVB-01) (`CYW9P62S1-43012EVB-01`)
+- [PSoC&trade; 62S3 Wi-Fi Bluetooth&reg; prototyping kit](https://www.infineon.com/CY8CPROTO-062S3-4343W) (`CY8CPROTO-062S3-4343W`)
+- [PSoC&trade; 64 "Secure Boot" Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CY8CKIT-064B0S2-4343W) (`CY8CKIT-064B0S2-4343W`)
+- [PSoC&trade; 62S4 pioneer kit](https://www.infineon.com/CY8CKIT-062S4) (`CY8CKIT-062S4`)
+- [PSoC&trade; 62S2 evaluation kit](https://www.infineon.com/CY8CEVAL-062S2) (`CY8CEVAL-062S2`, `CY8CEVAL-062S2-LAI-4373M2`)
 - Rapid IoT connect platform RP01 feather kit (`CYSBSYSKIT-01`)
 - Rapid IoT connect developer kit (`CYSBSYSKIT-DEV-01`)
+- [XMC7200 evaluation kit](https://www.infineon.com/KIT_XMC72_EVK) (`KIT_XMC72_EVK`)
 
 
 ## Hardware setup
@@ -45,12 +46,32 @@ This example uses the board's default configuration. See the kit user guide to e
 
 **Note:** The PSoC&trade; 6 Bluetooth&reg; LE pioneer kit (CY8CKIT-062-BLE) and the PSoC&trade; 6 Wi-Fi Bluetooth&reg; pioneer kit (CY8CKIT-062-WIFI-BT) ship with KitProg2 installed. The ModusToolbox&trade; software requires KitProg3. Before using this code example, make sure that the board is upgraded to KitProg3. The tool and instructions are available in the [Firmware Loader](https://github.com/Infineon/Firmware-loader) GitHub repository. If you do not upgrade, you will see an error like "unable to find CMSIS-DAP device" or "KitProg firmware is out of date".
 
+When set I2C_MODE_BOTH mode, please refer the following pin assignment to configure the corresponding pin for mI2C_SCL/mI2C_SDA in resource_map file.
+
+**Table 1. mI2C_SCL/mI2C_SDA Pin assignment**
+
+|                TARGET                |  mI2C_SCL  |  mI2C_SDA  |
+| :----------------------------------: | :--------: | :--------: |
+| CY8CPROTO-062S3-4343W                |    P5_0    |    P5_1    |
+| CYW9P62S1-43012EVB-01                |    P0_2    |    P0_3    |
+| CY8CKIT-062S4                        |    P10_0   |    P10_1   |
+| KIT_XMC72_EVK                        |    P12_2   |    P12_1   |
+| CY8CKIT-062S2-43012                  |    P9_0    |    P9_1    |
+| CYW9P62S1-43438EVB-01                |    P9_0    |    P9_1    |
+| CY8CKIT-062-BLE                      |    P9_0    |    P9_1    |
+| CY8CKIT-062-WIFI-BT                  |    P9_0    |    P9_1    |
+| CY8CPROTO-063-BLE                    |    P9_0    |    P9_1    |
+| CY8CPROTO-062-4343W                  |    P9_0    |    P9_1    |
+| CY8CKIT-064B0S2-4343W                |    P9_0    |    P9_1    |
+| CYSBSYSKIT-01                        |    P9_0    |    P9_1    |
+| CYSBSYSKIT-DEV-01                    |    P9_0    |    P9_1    |
+| CY8CEVAL-062S2                       |    P9_0    |    P9_1    |
+| CY8CEVAL-062S2-LAI-4373M2            |    P9_0    |    P9_1    |
+<br>
 
 ## Software setup
 
 Install a terminal emulator if you don't have one. Instructions in this document use [Tera Term](https://ttssh2.osdn.jp/index.html.en).
-
-This example requires no additional software or tools.
 
 
 ## Using the code example
@@ -59,11 +80,11 @@ Create the project and open it using one of the following:
 
 <details><summary><b>In Eclipse IDE for ModusToolbox&trade; software</b></summary>
 
-1. Click the **New Application** link in the **Quick Panel** (or, use **File** > **New** > **ModusToolbox Application**). This launches the [Project Creator](https://www.cypress.com/ModusToolboxProjectCreator) tool.
+1. Click the **New Application** link in the **Quick Panel** (or, use **File** > **New** > **ModusToolbox&trade; Application**). This launches the [Project Creator](https://www.infineon.com/ModusToolboxProjectCreator) tool.
 
 2. Pick a kit supported by the code example from the list shown in the **Project Creator - Choose Board Support Package (BSP)** dialog.
 
-   When you select a supported kit, the example is reconfigured automatically to work with the kit. To work with a different supported kit later, use the [Library Manager](https://www.cypress.com/ModusToolboxLibraryManager) to choose the BSP for the supported kit. You can use the Library Manager to select or update the BSP and firmware libraries used in this application. To access the Library Manager, click the link from the **Quick Panel**.
+   When you select a supported kit, the example is reconfigured automatically to work with the kit. To work with a different supported kit later, use the [Library Manager](https://www.infineon.com/ModusToolboxLibraryManager) to choose the BSP for the supported kit. You can use the Library Manager to select or update the BSP and firmware libraries used in this application. To access the Library Manager, click the link from the **Quick Panel**.
 
    You can also just start the application creation process again and select a different kit.
 
@@ -77,7 +98,7 @@ Create the project and open it using one of the following:
 
 6. Click **Create** to complete the application creation process.
 
-For more details, see the [Eclipse IDE for ModusToolbox&trade; software user guide](https://www.cypress.com/MTBEclipseIDEUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/ide_{version}/docs/mt_ide_user_guide.pdf*).
+For more details, see the [Eclipse IDE for ModusToolbox&trade; software user guide](https://www.infineon.com/MTBEclipseIDEUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/docs_{version}/mt_ide_user_guide.pdf*).
 
 </details>
 
@@ -87,7 +108,7 @@ ModusToolbox&trade; software provides the Project Creator as both a GUI tool and
 
 Use a CLI terminal to invoke the "project-creator-cli" tool. On Windows, use the command line "modus-shell" program provided in the ModusToolbox&trade; software installation instead of a standard Windows command-line application. This shell provides access to all ModusToolbox&trade; software tools. You can access it by typing `modus-shell` in the search box in the Windows menu. In Linux and macOS, you can use any terminal application.
 
-This tool has the following arguments:
+The "project-creator-cli" tool has the following arguments:
 
 Argument | Description | Required/optional
 ---------|-------------|-----------
@@ -96,9 +117,9 @@ Argument | Description | Required/optional
 `--target-dir`| Specify the directory in which the application is to be created if you prefer not to use the default current working directory | Optional
 `--user-app-name`| Specify the name of the application if you prefer to have a name other than the example's default name | Optional
 
-<br>
+<br />
 
-The following example will clone the "[Hello World](https://github.com/Infineon/mtb-example-psoc6-hello-world)" application with the desired name "MyHelloWorld" configured for the *CY8CKIT-062-WIFI-BT* BSP into the specified working directory, *C:/mtb_projects*:
+The following example clones the "[Hello world](https://github.com/Infineon/mtb-example-psoc6-hello-world)" application with the desired name "MyHelloWorld" configured for the *CY8CKIT-062-WIFI-BT* BSP into the specified working directory, *C:/mtb_projects*:
 
    ```
    project-creator-cli --board-id CY8CKIT-062-WIFI-BT --app-id mtb-example-psoc6-hello-world --user-app-name MyHelloWorld --target-dir "C:/mtb_projects"
@@ -106,13 +127,34 @@ The following example will clone the "[Hello World](https://github.com/Infineon/
 
 **Note:** The project-creator-cli tool uses the `git clone` and `make getlibs` commands to fetch the repository and import the required libraries. For details, see the "Project creator tools" section of the [ModusToolbox&trade; software user guide](https://www.cypress.com/ModusToolboxUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/docs_{version}/mtb_user_guide.pdf*).
 
+To work with a different supported kit later, use the [Library Manager](https://www.infineon.com/ModusToolboxLibraryManager) to choose the BSP for the supported kit. You can invoke the Library Manager GUI tool from the terminal using `make modlibs` command or use the Library Manager CLI tool "library-manager-cli" to change the BSP.
+
+The "library-manager-cli" tool has the following arguments:
+
+Argument | Description | Required/optional
+---------|-------------|-----------
+`--add-bsp-name` | Name of the BSP that should be added to the application | Required
+`--set-active-bsp` | Name of the BSP that should be as active BSP for the application | Required
+`--add-bsp-version`| Specify the version of the BSP that should be added to the application if you do not wish to use the latest from manifest | Optional
+`--add-bsp-location`| Specify the location of the BSP (local/shared) if you prefer to add the BSP in a shared path | Optional
+
+<br />
+
+Following example adds the CY8CPROTO-062-4343W BSP to the already created application and makes it the active BSP for the app:
+
+   ```
+   library-manager-cli --project "C:/mtb_projects/MyHelloWorld" --add-bsp-name CY8CPROTO-062-4343W --add-bsp-version "latest-v4.X" --add-bsp-location "local"
+
+   library-manager-cli --project "C:/mtb_projects/MyHelloWorld" --set-active-bsp APP_CY8CPROTO-062-4343W
+   ```
+
 </details>
 
 <details><summary><b>In third-party IDEs</b></summary>
 
 Use one of the following options:
 
-- **Use the standalone [Project Creator](https://www.cypress.com/ModusToolboxProjectCreator) tool:**
+- **Use the standalone [Project Creator](https://www.infineon.com/ModusToolboxProjectCreator) tool:**
 
    1. Launch Project Creator from the Windows Start menu or from *{ModusToolbox&trade; software install directory}/tools_{version}/project-creator/project-creator.exe*.
 
@@ -122,17 +164,17 @@ Use one of the following options:
 
    4. Click **Create** and follow the instructions printed in the bottom pane to import or open the exported project in the respective IDE.
 
-<br>
+<br />
 
 - **Use command-line interface (CLI):**
 
-   1. Follow the instructions from the **In command-line interface (CLI)** section to create the application, and then import the libraries using the `make getlibs` command.
+   1. Follow the instructions from the **In command-line interface (CLI)** section to create the application.
 
    2. Export the application to a supported IDE using the `make <ide>` command.
 
    3. Follow the instructions displayed in the terminal to create or import the application as an IDE project.
 
-For a list of supported IDEs and more details, see the "Exporting to IDEs" section of the [ModusToolbox&trade; software user guide](https://www.cypress.com/ModusToolboxUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/docs_{version}/mtb_user_guide.pdf*).
+For a list of supported IDEs and more details, see the "Exporting to IDEs" section of the [ModusToolbox&trade; software user guide](https://www.infineon.com/ModusToolboxUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/docs_{version}/mtb_user_guide.pdf*).
 
 </details>
 
@@ -155,11 +197,9 @@ If using a PSoC&trade; 64 "Secure" MCU kit (like CY8CKIT-064B0S2-4343W), the PSo
 
    By default, the code example is configured to work in 'Master only' mode. In the *resource_map.h* file, change the value of the `I2C_MODE` macro to `I2C_MODE_BOTH`.
 
-   Use jumper wires to establish a connection between the master and slave on the kit. For the default kit, do the following on the board (verify with *resource_map.h* to find respective pins for other kits):
+   **Note:** When set I2C_MODE_BOTH mode, please see the Hardware setup for the pin assignment to configure the mI2C_SCL/mI2C_SDA.
 
-   1. Connect P6[0] to P9[0].
-
-   2. Connect P6[1] to P9[1].
+   Make sure to use jumper wires to establish a connection between the master and slave on the kit.
 
 4. Program the board using one of the following:
 
@@ -189,8 +229,9 @@ If using a PSoC&trade; 64 "Secure" MCU kit (like CY8CKIT-064B0S2-4343W), the PSo
 
    ![](images/terminal-i2c-master.png)
 
-6. Observe that the kit user LED blinks at 1 Hz.
+6. Observe that the kit user LED blinks at 1 Hz when IIC communication.
 
+**Note:** When use the CE only in Slave or Master mode, please use other board in Master mode or Slave mode for IIC communication, connect two board through SCL and SDA Pin.
 
 ## Debugging
 
@@ -208,7 +249,7 @@ The master sends packet to the slave with the command to turn ON or turn OFF the
 
 ### Resources and settings
 
-**Table 1. Application resources**
+**Table 2. Application resources**
 
  Resource  |  Alias/object  |  Purpose
  :-------- | :------------- | :-----------
@@ -216,32 +257,30 @@ The master sends packet to the slave with the command to turn ON or turn OFF the
  I2C (HAL) |      sI2C      | Slave I2C
  UART (HAL)| cy_retarget_io_uart_obj | UART HAL object used by Retarget-IO for Debug UART port
  GPIO (HAL)| CYBSP_USER_LED | User LED to show visual output
-
 <br>
 
 ## Related resources
 
 Resources  | Links
 -----------|----------------------------------
-Application notes  | [AN228571](https://www.cypress.com/AN228571) – Getting started with PSoC&trade; 6 MCU on ModusToolbox&trade; software <br>  [AN215656](https://www.cypress.com/AN215656) – PSoC&trade; 6 MCU: Dual-CPU system design
+Application notes  | [AN228571](https://www.cypress.com/AN228571) – Getting started with PSoC&trade; 6 MCU on ModusToolbox&trade; software <br />  [AN215656](https://www.cypress.com/AN215656) – PSoC&trade; 6 MCU: Dual-CPU system design <br />  [AN234334](https://www.cypress.com/AN234334) – Getting started with XMC7000 MCU on ModusToolbox&trade; software
 Code examples  | [Using ModusToolbox&trade; software](https://github.com/Infineon/Code-Examples-for-ModusToolbox-Software) on GitHub
 Device documentation | [PSoC&trade; 6 MCU datasheets](https://www.cypress.com/search/all?f[0]=meta_type%3Atechnical_documents&f[1]=resource_meta_type%3A575&f[2]=field_related_products%3A114026) <br> [PSoC&trade; 6 technical reference manuals](https://www.cypress.com/search/all/PSoC%206%20Technical%20Reference%20Manual?f[0]=meta_type%3Atechnical_documents&f[1]=resource_meta_type%3A583)
 Development kits | Visit www.cypress.com/microcontrollers-mcus-kits and use the options in the **Select your kit** section to filter kits by *Product family* or *Features*.
-Libraries on GitHub  | [mtb-pdl-cat1](https://github.com/infineon/mtb-pdl-cat1) – PSoC&trade; 6 peripheral driver library (PDL)  <br> [mtb-hal-cat1](https://github.com/infineon/mtb-hal-cat1) – Hardware abstraction layer (HAL) library <br> [retarget-io](https://github.com/infineon/retarget-io) – Utility library to retarget STDIO messages to a UART port
-Middleware on GitHub  | [capsense](https://github.com/infineon/capsense) – CAPSENSE&trade; library and documents <br> [psoc6-middleware](https://github.com/Infineon/modustoolbox-software#psoc-6-middleware-libraries) – Links to all PSoC&trade; 6 MCU middleware
-Tools  | [Eclipse IDE for ModusToolbox&trade; software](https://www.cypress.com/modustoolbox) – ModusToolbox&trade; software is a collection of easy-to-use software and tools enabling rapid development with Infineon MCUs, covering applications from embedded sense and control to wireless and cloud-connected systems using AIROC&trade; Wi-Fi and Bluetooth® connectivity devices.
-
+Libraries on GitHub  | [mtb-pdl-cat1](https://github.com/Infineon/mtb-pdl-cat1) – Peripheral driver library (PDL)  <br> [mtb-hal-cat1](https://github.com/Infineon/mtb-hal-cat1) – Hardware abstraction layer (HAL) library <br> [retarget-io](https://github.com/Infineon/retarget-io) – Utility library to retarget STDIO messages to a UART port
+Middleware on GitHub  | [capsense](https://github.com/Infineon/capsense) – CAPSENSE&trade; library and documents <br> [psoc6-middleware](https://github.com/Infineon/modustoolbox-software#psoc-6-middleware-libraries) – Links to all PSoC&trade; 6 MCU middleware
+Tools  | [Eclipse IDE for ModusToolbox&trade; software](https://www.infineon.com/cms/en/design-support/tools/sdk/modustoolbox-software/) – ModusToolbox&trade; software is a collection of easy-to-use software and tools enabling rapid development with Infineon MCUs, covering applications from embedded sense and control to wireless and cloud-connected systems using AIROC&trade; Wi-Fi and Bluetooth® connectivity devices.
 <br>
 
 ## Other resources
 
-Cypress provides a wealth of data at www.cypress.com to help you select the right device, and quickly and effectively integrate it into your design.
+Infineon provides a wealth of data at www.infineon.com to help you select the right device, and quickly and effectively integrate it into your design.
 
-For PSoC&trade; 6 MCU devices, see [How to design with PSoC&trade; 6 MCU - KBA223067](https://community.cypress.com/docs/DOC-14644) in the Cypress community.
+For PSoC&trade; 6 MCU devices, see [How to design with PSoC&trade; 6 MCU - KBA223067](https://community.infineon.com/docs/DOC-14644) in the Infineon Developer community.
 
 ## Document history
 
-Document title: *CE220818* - *PSoC&trade; 6 MCU: I2C master*
+Document title: *CE220818* - *HAL: I2C master*
 
  Version | Description of change
  ------- | ---------------------
@@ -251,7 +290,7 @@ Document title: *CE220818* - *PSoC&trade; 6 MCU: I2C master*
  2.1.0   | Added support for new kits |
  2.2.0   | Updated to support ModusToolbox&trade; software v2.3.<br /> Added support for CY8CKIT-062S4.
  2.3.0   | Added support for CY8CEVAL-062S2 and CY8CEVAL-062S2-LAI-4373M2
-
+ 3.0.0   | Major update to support ModusToolbox software v3.0, added support for KIT-XMC72-EVK 
 <br>
 
 
