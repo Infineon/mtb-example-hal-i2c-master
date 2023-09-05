@@ -4,7 +4,7 @@ This code example demonstrates the use of the I2C resource in HAL in master mode
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-hal-i2c-master)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMjU1MzUiLCJTcGVjIE51bWJlciI6IjAwMi0yNTUzNSIsIkRvYyBUaXRsZSI6IkhhcmR3YXJlIEFic3RyYWN0aW9uIExheWVyIChIQUwpOiBJMkMgbWFzdGVyIiwicmlkIjoieWVrdCIsIkRvYyB2ZXJzaW9uIjoiMy40LjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiSUNXIiwiRG9jIEZhbWlseSI6IlBTT0MifQ==)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMjU1MzUiLCJTcGVjIE51bWJlciI6IjAwMi0yNTUzNSIsIkRvYyBUaXRsZSI6IkhhcmR3YXJlIEFic3RyYWN0aW9uIExheWVyIChIQUwpOiBJMkMgbWFzdGVyIiwicmlkIjoieWVrdCIsIkRvYyB2ZXJzaW9uIjoiMy40LjEiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiSUNXIiwiRG9jIEZhbWlseSI6IlBTT0MifQ==)
 
 
 ## Requirements
@@ -13,7 +13,7 @@ This code example demonstrates the use of the I2C resource in HAL in master mode
 - Board Support Package (BSP) minimum required version for:
    - PSoC&trade; 6 MCU: v4.0.0
    - KIT_XMC72_EVK: v1.0.0
-   - CYW920829M2EVK-02: v1.0.0.Beta4
+   - CYW920829M2EVK-02: v1.0.1
 - Programming language: C
 - Associated parts: All [PSoC&trade; 6 MCU](https://www.infineon.com/cms/en/product/microcontroller/32-bit-psoc-arm-cortex-microcontroller/psoc-6-32-bit-arm-cortex-m4-mcu) parts, [XMC7000 MCU](https://www.infineon.com/cms/en/product/microcontroller/32-bit-industrial-microcontroller-based-on-arm-cortex-m/), and [AIROC&trade; CYW20829 Bluetooth&reg; LE SoC](https://www.infineon.com/cms/en/product/promopages/airoc20829/)
 
@@ -28,14 +28,15 @@ This code example demonstrates the use of the I2C resource in HAL in master mode
 ## Supported kits (make variable 'TARGET')
 
 - [PSoC&trade; 6 Wi-Fi Bluetooth&reg; prototyping kit](https://www.infineon.com/CY8CPROTO-062-4343W) (`CY8CPROTO-062-4343W`) – Default value of `TARGET`
+- [AIROC&trade; CYW20829 Bluetooth&reg; LE evaluation kit](https://www.infineon.com/CYW920829M2EVK-02) (`CYW920829M2EVK-02`)
 - [PSoC&trade; 6 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CY8CKIT-062-WIFI-BT) (`CY8CKIT-062-WIFI-BT`)
 - [PSoC&trade; 6 Bluetooth&reg; LE pioneer kit](https://www.infineon.com/CY8CKIT-062-BLE) (`CY8CKIT-062-BLE`)
 - [PSoC&trade; 6 Bluetooth&reg; LE prototyping kit](https://www.infineon.com/CY8CPROTO-063-BLE) (`CY8CPROTO-063-BLE`)
 - [PSoC&trade; 62S2 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CY8CKIT-062S2-43012) (`CY8CKIT-062S2-43012`)
 - [PSoC&trade; 62S1 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CYW9P62S1-43438EVB-01) (`CYW9P62S1-43438EVB-01`)
 - [PSoC&trade; 62S1 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CYW9P62S1-43012EVB-01) (`CYW9P62S1-43012EVB-01`)
-- [PSoC&trade; 62S3 Wi-Fi Bluetooth&reg; prototyping kit](https://www.infineon.com/CY8CPROTO-062S3-4343W) (`CY8CPROTO-062S3-4343W`)
 - [PSoC&trade; 62S2 Wi-Fi Bluetooth&reg; prototyping kit](https://www.infineon.com/CY8CPROTO-062S2-43439) (`CY8CPROTO-062S2-43439`)
+- [PSoC&trade; 62S3 Wi-Fi Bluetooth&reg; prototyping kit](https://www.infineon.com/CY8CPROTO-062S3-4343W) (`CY8CPROTO-062S3-4343W`)
 - [EZ-BLE Arduino Evaluation Board](https://www.infineon.com/cms/en/product/evaluation-boards/cyble-416045-eval/) (`CYBLE-416045-EVAL`)
 - [PSoC&trade; 64 "Secure Boot" Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CY8CKIT-064B0S2-4343W) (`CY8CKIT-064B0S2-4343W`)
 - [PSoC&trade; 62S4 pioneer kit](https://www.infineon.com/CY8CKIT-062S4) (`CY8CKIT-062S4`)
@@ -43,7 +44,7 @@ This code example demonstrates the use of the I2C resource in HAL in master mode
 - Rapid IoT connect platform RP01 feather kit (`CYSBSYSKIT-01`)
 - Rapid IoT connect developer kit (`CYSBSYSKIT-DEV-01`)
 - [XMC7200 evaluation kit](https://www.infineon.com/KIT_XMC72_EVK) (`KIT_XMC72_EVK`)
-- AIROC&trade; CYW20829 Bluetooth&reg; LE evaluation kit (`CYW920829M2EVK-02`)
+
 
 ## Hardware setup
 
@@ -265,7 +266,8 @@ Document title: *CE225535* – *Hardware Abstraction Layer (HAL): I2C master*
  3.1.0   | Added the BSP support for CYW920829M2EVB-01 
  3.2.0   | Added the BSP support for CY8CEVAL-062S2-LAI-43439M2
  3.3.0   | Removed CYW920829M2EVB-01 from supported kits <br> Added support for CY8CPROTO-062S2-43439, CYBLE-416045-EVAL and CYW920829M2EVK-02
- 3.4.0   | Added the BSP support for  CY8CEVAL-062S2-MUR-4373EM2 and CY8CEVAL-062S2-MUR-43439M2           
+ 3.4.0   | Added the BSP support for  CY8CEVAL-062S2-MUR-4373EM2 and CY8CEVAL-062S2-MUR-43439M2
+ 3.4.1   | Readme Updated           
 <br />
 
 
