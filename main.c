@@ -76,6 +76,9 @@
 /* Packet size */
 #define PACKET_SIZE             (3UL)
 
+#ifdef XMC7200D_E272K8384
+#define KIT_XMC72
+#endif
 
 /*******************************************************************************
 * Global Variables
@@ -140,6 +143,21 @@ int main(void)
     result = cybsp_init();
     /* Board init failed. Stop program execution */
     handle_error(result);
+
+#if defined(KIT_XMC72)
+    /*Configure clock settings for KIT_XMC72_EVK */
+    cyhal_clock_t clock_fll, clock_hf, clock_peri;
+    result = cyhal_clock_reserve(&clock_hf, &CYHAL_CLOCK_HF[0]);
+    result = cyhal_clock_reserve(&clock_fll, &CYHAL_CLOCK_FLL);
+    if(result == CY_RSLT_SUCCESS){
+    result = cyhal_clock_set_source(&clock_hf, &clock_fll);
+    }
+    /* Set divider to 1 for Peripheral Clock */
+    result = cyhal_clock_reserve(&clock_peri, CYHAL_CLOCK_PERI);
+    if(result == CY_RSLT_SUCCESS){
+    result = cyhal_clock_set_divider(&clock_peri,1);
+    }
+#endif
 
     /* Initialize the retarget-io */
     result = cy_retarget_io_init(CYBSP_DEBUG_UART_TX, CYBSP_DEBUG_UART_RX,
