@@ -4,19 +4,20 @@ This code example demonstrates the use of the I2C resource in HAL in master mode
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-hal-i2c-master)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMjU1MzUiLCJTcGVjIE51bWJlciI6IjAwMi0yNTUzNSIsIkRvYyBUaXRsZSI6IkhhcmR3YXJlIEFic3RyYWN0aW9uIExheWVyIChIQUwpOiBJMkMgbWFzdGVyIiwicmlkIjoieWVrdCIsIkRvYyB2ZXJzaW9uIjoiMy44LjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiSUNXIiwiRG9jIEZhbWlseSI6IlBTT0MifQ==)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMjU1MzUiLCJTcGVjIE51bWJlciI6IjAwMi0yNTUzNSIsIkRvYyBUaXRsZSI6IkhhcmR3YXJlIEFic3RyYWN0aW9uIExheWVyIChIQUwpOiBJMkMgbWFzdGVyIiwicmlkIjoieWVrdCIsIkRvYyB2ZXJzaW9uIjoiMy45LjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiSUNXIiwiRG9jIEZhbWlseSI6IlBTT0MifQ==)
 
 
 ## Requirements
 
-- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.1 or later (tested with v3.1)
+- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.2 or later (tested with v3.2)
 - Board Support Package (BSP) minimum required version for:
    - PSoC&trade; 6 MCU: v4.2.0
    - KIT_XMC72_EVK: v1.2.0
    - CYW920829M2EVK-02: v1.0.1
-   - CYW989829M2EVB-01: v1.0.1
+   - CYW989829M2EVB-01: v1.0.4
+   - CYW989829M2EVB-03: v1.0.4
 - Programming language: C
-- Associated parts: All [PSoC&trade; 6 MCU](https://www.infineon.com/cms/en/product/microcontroller/32-bit-psoc-arm-cortex-microcontroller/psoc-6-32-bit-arm-cortex-m4-mcu) parts, [XMC7000 MCU](https://www.infineon.com/cms/en/product/microcontroller/32-bit-industrial-microcontroller-based-on-arm-cortex-m/), [AIROC&trade; CYW20829 Bluetooth&reg; LE SoC](https://www.infineon.com/cms/en/product/promopages/airoc20829/), and [AIROC&trade; CYW89829 Bluetooth&reg; LE SoC]()
+- Associated parts: All [PSoC&trade; 6 MCU](https://www.infineon.com/cms/en/product/microcontroller/32-bit-psoc-arm-cortex-microcontroller/psoc-6-32-bit-arm-cortex-m4-mcu) parts, [XMC7000 MCU](https://www.infineon.com/cms/en/product/microcontroller/32-bit-industrial-microcontroller-based-on-arm-cortex-m/), [AIROC&trade; CYW20829 Bluetooth&reg; LE SoC](https://www.infineon.com/cms/en/product/promopages/airoc20829/), and [AIROC&trade; CYW89829 Bluetooth&reg; LE SoC]
 
 
 ## Supported toolchains (make variable 'TOOLCHAIN')
@@ -30,7 +31,7 @@ This code example demonstrates the use of the I2C resource in HAL in master mode
 
 - [PSoC&trade; 62S2 Wi-Fi Bluetooth&reg; Prototyping Kit](https://www.infineon.com/CY8CPROTO-062S2-43439) (`CY8CPROTO-062S2-43439`) – Default value of `TARGET`
 - [AIROC&trade; CYW20829 Bluetooth&reg; LE Evaluation Kit](https://www.infineon.com/CYW920829M2EVK-02) (`CYW920829M2EVK-02`)
-- [AIROC&trade; CYW89829 Bluetooth&reg; LE Evaluation kit](`CYW989829M2EVB-01`)
+- AIROC&trade; CYW89829 Bluetooth&reg; LE Evaluation kit (`CYW989829M2EVB-01`, `CYW989829M2EVB-03`)
 - [PSoC&trade; 6 Wi-Fi Bluetooth&reg; Pioneer Kit](https://www.infineon.com/CY8CKIT-062-WIFI-BT) (`CY8CKIT-062-WIFI-BT`)
 - [PSoC&trade; 6 Bluetooth&reg; LE Pioneer Kit](https://www.infineon.com/CY8CKIT-062-BLE) (`CY8CKIT-062-BLE`)
 - [PSoC&trade; 6 Bluetooth&reg; LE Prototyping Kit](https://www.infineon.com/CY8CPROTO-063-BLE) (`CY8CPROTO-063-BLE`)
@@ -64,6 +65,9 @@ To verify the output, two devices are required: one for the master and the other
 
 The AIROC&trade; CYW20829 Bluetooth&reg; kit (CYW920829M2EVK-02) ships with KitProg3 version 2.21 installed. The ModusToolbox&trade; requires KitProg3 with the latest version (2.40). Before using this code example, make sure that the board is upgraded to KitProg3. The tool and instructions are available in the [Firmware Loader](https://github.com/Infineon/Firmware-loader) GitHub repository. If you do not upgrade, you will see an error such as "unable to find CMSIS-DAP device" or "KitProg firmware is out of date".  <br><br>
 The AIROC&trade; CYW89829 Bluetooth&reg; kit (CYW989829M2EVB-01): pull-up resistors R1=4.7k and R2=4.7k on the baseboard(CYW9BTM2AUAD) are DNI(Do Not Install) which should be mounted for the I2C to function properly.
+
+The AIROC&trade; CYW89829 Bluetooth&reg; kit (CYW989829M2EVB-03): 
+CYW989829M2EVB-03 may have installed R285 on the baseboard(CYW9BTM2BASE3), please remove it for the I2C to function properly.
 ## Software setup
 
 See the [ModusToolbox&trade; tools package installation guide](https://www.infineon.com/ModusToolboxInstallguide) for information about installing and configuring the tools package.
@@ -306,6 +310,7 @@ Document title: *CE225535* – *Hardware Abstraction Layer (HAL): I2C master*
  3.6.0   | Added support for KIT_XMC71_EVK_LITE_V1
  3.7.0   | Added support for CY8CEVAL-062S2-CYW43022CUB and CYW989829M2EVB-01
  3.8.0   | Added support for CY8CKIT-062S2-AI 
+ 3.9.0   | Added support for CYW89829M2EVB-03
  <br>
 
 All referenced product or service names and trademarks are the property of their respective owners.
