@@ -4,7 +4,7 @@ This code example demonstrates the use of the I2C resource in HAL in master mode
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-hal-i2c-master)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMjU1MzUiLCJTcGVjIE51bWJlciI6IjAwMi0yNTUzNSIsIkRvYyBUaXRsZSI6IkhhcmR3YXJlIEFic3RyYWN0aW9uIExheWVyIChIQUwpOiBJMkMgbWFzdGVyIiwicmlkIjoieWVrdCIsIkRvYyB2ZXJzaW9uIjoiMy45LjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiSUNXIiwiRG9jIEZhbWlseSI6IlBTT0MifQ==)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMjU1MzUiLCJTcGVjIE51bWJlciI6IjAwMi0yNTUzNSIsIkRvYyBUaXRsZSI6IkhhcmR3YXJlIEFic3RyYWN0aW9uIExheWVyIChIQUwpOiBJMkMgbWFzdGVyIiwicmlkIjoicGF0aGlzdWRoYXJzIiwiRG9jIHZlcnNpb24iOiIzLjEwLjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiSUNXIiwiRG9jIEZhbWlseSI6IlBTT0MifQ==)
 
 
 ## Requirements
@@ -43,7 +43,7 @@ This code example demonstrates the use of the I2C resource in HAL in master mode
 - [EZ-BLE Arduino Evaluation Board](https://www.infineon.com/cms/en/product/evaluation-boards/cyble-416045-eval/) (`CYBLE-416045-EVAL`)
 - [PSoC&trade; 64 "Secure Boot" Wi-Fi Bluetooth&reg; Pioneer Kit](https://www.infineon.com/CY8CKIT-064B0S2-4343W) (`CY8CKIT-064B0S2-4343W`)
 - [PSoC&trade; 62S4 Pioneer Kit](https://www.infineon.com/CY8CKIT-062S4) (`CY8CKIT-062S4`)
-- [PSoC&trade; 62S2 Evaluation Kit](https://www.infineon.com/CY8CEVAL-062S2) (`CY8CEVAL-062S2`, `CY8CEVAL-062S2-LAI-4373M2`, `CY8CEVAL-062S2-LAI-43439M2`, `CY8CEVAL-062S2-MUR-4373EM2`, `CY8CEVAL-062S2-MUR-4373M2`,`CY8CEVAL-062S2-CYW43022CUB`)
+- [PSoC&trade; 62S2 Evaluation Kit](https://www.infineon.com/CY8CEVAL-062S2) (`CY8CEVAL-062S2`, `CY8CEVAL-062S2-LAI-4373M2`, `CY8CEVAL-062S2-LAI-43439M2`, `CY8CEVAL-062S2-MUR-4373EM2`, `CY8CEVAL-062S2-MUR-4373M2`,`CY8CEVAL-062S2-CYW43022CUB`, `CY8CEVAL-062S2-CYW955513SDM2WLIPA`)
 - Rapid IoT connect Platform RP01 feather kit (`CYSBSYSKIT-01`)
 - Rapid IoT connect developer Kit (`CYSBSYSKIT-DEV-01`)
 - [XMC7200 Evaluation Kit](https://www.infineon.com/KIT_XMC72_EVK) (`KIT_XMC72_EVK`, `KIT_XMC72_EVK_MUR_43439M2`)
@@ -311,8 +311,9 @@ Document title: *CE225535* – *Hardware Abstraction Layer (HAL): I2C master*
  3.7.0   | Added support for CY8CEVAL-062S2-CYW43022CUB and CYW989829M2EVB-01
  3.8.0   | Added support for CY8CKIT-062S2-AI 
  3.9.0   | Added support for CYW89829M2EVB-03
- <br>
+ 3.10.0  | Added support for CY8CEVAL-062S2-CYW955513SDM2WLIPA
 
+<br>
 All referenced product or service names and trademarks are the property of their respective owners.
 
 The Bluetooth&reg; word mark and logos are registered trademarks owned by Bluetooth SIG, Inc., and any use of such marks by Infineon is under license.
